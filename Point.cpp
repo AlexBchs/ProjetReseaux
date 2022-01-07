@@ -1,35 +1,45 @@
-#include "Point.h"
+#include "point.h"
 
-Point::Point(int x, int y): x{x}, y{y}
+Point::Point() : _x{ 0.0 }, _y{ 0.0 }
+{}
+
+Point::Point(double x, double y) : _x{ x }, _y{ y }
+{}
+
+Point::Point(int x, int y) : _x{ static_cast<double>(x) }, _y{ static_cast<double>(y) }
+{}
+
+Point::~Point()
+{}
+
+double Point::getX() const
 {
+    return _x;
 }
 
-Point::Point(): x{0}, y{0}
+double Point::getY() const
 {
+    return _y;
 }
 
-int Point::X() const 
+void Point::setX(double x)
 {
-	return this->x;
+    _x = x;
 }
 
-int Point::Y() const 
+void Point::setY(double y)
 {
-	return this->y;
+    _y = y;
 }
 
-void Point::setX(int x) 
+void Point::moveTo(double x, double y)
 {
-	this->x=x;
+    _x = x;
+    _y = y;
 }
 
-void Point::setY(int y) 
+void Point::moveOf(double dx, double dy)
 {
-	this->y = y;
-}
-
-double Point::Distance(Point& p) 
-{
-	
-	return sqrt((this->x - p.X()) * (this->x - p.X()) + (this->y - p.Y()) * (this->y - p.Y()));
+    _x += dx;
+    _y += dy;
 }
