@@ -17,11 +17,11 @@ Hexagon::Hexagon(const Point& center, double radius, std::vector<double> color, 
     double x, y;
 
     //Construction des points dans le sens anti-trigo en commencant par le point en haut
-    for(int i=0; i<numPoints; ++i)
+    for(int i = 0; i< numPoints; ++i)
     {
         x= centerX+radius*sin(i*angle);
         y= centerY+radius*cos(i*angle);
-        Point  P= Point(x, y);
+        Point P = Point(x, y);
         _listPoint.push_back(P);
     }
 }
