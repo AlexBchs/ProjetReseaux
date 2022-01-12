@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include <stdio.h>
 
-const int baseTimeur = 500;
+const int baseInterval = 500;
 const double baseSpeed = 20;
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     launched = false;
 
     updater = new QTimer(this);
-    updater->setInterval(500);
+    updater->setInterval(baseInterval);
     updater->start();
     connect( updater, SIGNAL(timeout()), this, SLOT(update()));
 }
@@ -86,7 +86,7 @@ double MainWindow::getSpeedRatio(int newSpeed)
 int MainWindow::calculInterval(int newSpeed)
 {
     //500 * ratio => 20 => 500
-    return 500 * (baseSpeed/newSpeed);
+    return baseInterval * (baseSpeed/newSpeed);
 }
 
 void MainWindow::changeSpeed(int newSpeed)
