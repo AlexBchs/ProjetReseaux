@@ -67,38 +67,39 @@ void MapOpenGL::paintGL()
     QRectF target( 0, 0, baseSizeX * zoom, baseSizeZ * zoom);
     p.drawImage( target, *bg);
 
-    qDebug() << "Dessin grille";
+    qDebug() << "Dessin Grille";
     std::vector<Hexagon> hexagons = simulation->getGrid().getHexagons();
-    for(unsigned long int i=0; i < hexagons.size(); ++i)
+    for(unsigned long int i = 0; i < hexagons.size(); ++i)
     {
-        for(int j=0; j < 5; ++j)
+        for(int j = 0; j < 5; ++j)
         {
             p.drawLine(QLineF( hexagons[i][j].getX() * zoom, hexagons[i][j].getY() * zoom, hexagons[i][j+1].getX()*zoom,hexagons[i][j+1].getY()*zoom));
         }
     }
 
-    qDebug() << "Dessin nodes";
+    qDebug() << "Dessin Nodes";
     p.setPen(Qt::red);
-    for(unsigned long int i=0; i<simulation->getNodes().size(); ++i)
+    for(unsigned long int i = 0; i<simulation->getNodes().size(); ++i)
     {
-        p.drawEllipse((simulation->getNodes()[i]->getX()-3)*zoom, (simulation->getNodes()[i]->getY()-3)*zoom,6,6);
+        p.drawEllipse((simulation->getNodes()[i]->getX() - 3)*zoom, (simulation->getNodes()[i]->getY() - 3)*zoom, 6, 6);
     }
 
-    qDebug() << "Dessin routes";
+    qDebug() << "Dessin Routes";
     p.setPen(Qt::blue);
-    for(unsigned long int i=0; i<simulation->getRoutes().size(); ++i)
+    for(unsigned long int i = 0; i< simulation->getRoutes().size(); ++i)
     {
         Node* node1 = simulation->getRoutes()[i]->getNode1();
         Node* node2 = simulation->getRoutes()[i]->getNode2();
         p.drawLine( QLineF( node1->getX()*zoom, node1->getY()*zoom, node2->getX()*zoom, node2->getY()*zoom));
     }
 
-    qDebug() << "Dessin voiture";
-    vector<Car*> cars = simulation->getCars();
-    for(unsigned long int i=0; i<cars.size(); ++i)
+    qDebug() << "Dessin Voitures";
+    vector<Car* > cars = simulation->getCars();
+    for(unsigned long int i = 0; i< cars.size(); ++i)
     {
         Point point = cars[i]->getPosition();
         QRectF target((point.getX()-6)*zoom, (point.getY()-6)*zoom, 12*zoom, 12*zoom);
         p.drawImage(target, *car);
     }
+    qDebug() << "Dessin Termine";
 }

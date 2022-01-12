@@ -12,7 +12,7 @@ HexaGrid::HexaGrid(const Point& FirstCenter, double radius, int lineSize, int co
     double yPair = FirstCenter.getY()+3*radius;
     double yImpair = line1[0].getTopRight().getY()+radius;
 
-    for(int i=1; i<colSize; ++i)
+    for(int i = 1; i < colSize; ++i)
     {
         if(i%2 == 0)
         {
@@ -42,9 +42,9 @@ std::vector<Hexagon> HexaGrid::getHexagons()
 {
     std::vector<Hexagon> hexagons;
     hexagons.reserve(_colSize * _lineSize);
-    for(int i=0; i<_colSize; ++i)
+    for(int i = 0; i<_colSize; ++i)
     {
-        for(int j=0; j<_lineSize; ++j)
+        for(int j = 0; j< _lineSize; ++j)
         {
             hexagons.push_back(_column[i][j]);
         }
