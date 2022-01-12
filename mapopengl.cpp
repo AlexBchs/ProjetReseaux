@@ -94,8 +94,7 @@ void MapOpenGL::paintGL()
     }
 
     qDebug() << "Dessin Voitures";
-    vector<Car*> cars = simulation->getCars();
-    qDebug() << cars.size();
+    vector<Car* > cars = simulation->getCars();
     for(unsigned long int i = 0; i< cars.size(); ++i)
     {
         Point point = cars[i]->getPosition();

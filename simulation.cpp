@@ -4,6 +4,7 @@
 #include <string>
 #include <QDir>
 #include <cstdlib>
+#include <QDebug>
 
 Simulation::Simulation() : _cars{0}, _nodes{0}, _routes{0}, speedSimulation{20}
 {
@@ -18,6 +19,7 @@ Simulation::Simulation() : _cars{0}, _nodes{0}, _routes{0}, speedSimulation{20}
     _lineSizeGrid = 400;
 
     _grid = new HexaGrid(Origine, _hexaRadius, _lineSizeGrid, _colSizeGrid);
+
 
     _graph = new Graph("../SimulationReseau/Ressources/map.txt", *this);
 
@@ -74,8 +76,8 @@ Node* Simulation::randomNode()
 
 void Simulation::addCar()
 {
-    Node* node= randomNode();
-    _cars.push_back(new Car(node, new Signal(), node->getConnectedRoutes()[0], speedSimulation));
+    Node* node = randomNode();
+    _cars[_cars.size()-1] = new Car(node, new Signal(), node->getConnectedRoutes()[0], speedSimulation);
 }
 
 void Simulation::removeACar()
@@ -89,6 +91,7 @@ void Simulation::removeACar()
 
 void Simulation::update()
 {
+    qDebug() << "Tick Update";
     /*for(unsigned long int i=0; i<_cars.size(); ++i)
     {
         if(_cars[i]) _cars[i]->moveOnTheRoute();
