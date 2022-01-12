@@ -21,7 +21,7 @@ bool Graph::extractMap(Simulation& simulation)
     std::ifstream mapFile{_mapFileName};
     if(!mapFile.is_open())
     {
-        //qDebug() << "Error map file not found";
+        qDebug() << "Error map file not found";
         return false;
     }
 
@@ -32,11 +32,12 @@ bool Graph::extractMap(Simulation& simulation)
     {
         int nbNodes;
         mapFile >> nbNodes;
-        for(int i=0; i<nbNodes; ++i)
+        for(int i = 0; i < nbNodes; ++i)
         {
             int id, x, y;
             mapFile >> id >> x >> y;
-            simulation.getNodes().push_back(new Node(id, x, y));
+            Node* newNode = new Node(id, x, y);
+            simulation.getNodes()[i] = newNode;
         }
     }
 
@@ -46,11 +47,11 @@ bool Graph::extractMap(Simulation& simulation)
     {
         int nbWays;
         mapFile >> nbWays;
-        for(int i=0; i<nbWays; ++i)
+        for(int i = 0; i < nbWays; ++i)
         {
             int id, idNode1, idNode2;
             mapFile >> id >> idNode1 >> idNode2;
-            simulation.getRoutes().push_back( new Route(id, simulation.getNodes()[idNode1], simulation.getNodes()[idNode2]));
+            simulation.getRoutes()[i] = new Route(id, simulation.getNodes()[idNode1], simulation.getNodes()[idNode2]);
         }
     }
 
