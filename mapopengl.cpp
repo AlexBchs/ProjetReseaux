@@ -17,11 +17,23 @@ MapOpenGL::MapOpenGL(QWidget* parent) : QOpenGLWidget (parent), zoom{1}
 void MapOpenGL::initializeGL()
 {
     bg = new QImage();
-    bg->load(QString("../SimulationReseau/Resource/mulhouse.png"));
-    //qDebug() << "Error mulhouse file not found";
+    if(bg->load(QString("../SimulationReseau/Ressources/mulhouse.png")))
+    {
+        qDebug() << "Map de Mulhouse chargé";
+    }
+    else
+    {
+        qDebug() << "Map de Mulhouse introuvable";
+    }
     car = new QImage();
-    car->load(QString("../SimulationReseau/Resource/voiture.png"));
-    //qDebug() << "Error voiture file not found";
+    if(bg->load(QString("../SimulationReseau/Ressources/voiture.png")))
+    {
+        qDebug() << "Image de voiture chargé";
+    }
+    else
+    {
+        qDebug() << "Image de voiture introuvable";
+    }
 }
 
 void MapOpenGL::setSimulation(Simulation* simul)
@@ -46,15 +58,16 @@ void MapOpenGL::decreaseZoom()
 
 void MapOpenGL::paintGL()
 {
+    qDebug() << "Debut paint";
     QPainter p(this);
     p.setPen(Qt::white);
 
-    //Draw the map
+    qDebug() << "Dessin Map";
     p.setPen(Qt::black);
     QRectF target( 0, 0, baseSizeX * zoom, baseSizeZ * zoom);
     p.drawImage( target, *bg);
 
-    //Draw the grid
+    qDebug() << "Dessin grille";
     std::vector<Hexagon> hexagons = simulation->getGrid().getHexagons();
     for(unsigned long int i=0; i < hexagons.size(); ++i)
     {
@@ -64,14 +77,14 @@ void MapOpenGL::paintGL()
         }
     }
 
-    //Draw the nodes
+    qDebug() << "Dessin nodes";
     p.setPen(Qt::red);
     for(unsigned long int i=0; i<simulation->getNodes().size(); ++i)
     {
         p.drawEllipse((simulation->getNodes()[i]->getX()-3)*zoom, (simulation->getNodes()[i]->getY()-3)*zoom,6,6);
     }
 
-    //Draw all the ways
+    qDebug() << "Dessin routes";
     p.setPen(Qt::blue);
     for(unsigned long int i=0; i<simulation->getRoutes().size(); ++i)
     {
@@ -80,7 +93,7 @@ void MapOpenGL::paintGL()
         p.drawLine( QLineF( node1->getX()*zoom, node1->getY()*zoom, node2->getX()*zoom, node2->getY()*zoom));
     }
 
-    //Draw the cars
+    qDebug() << "Dessin voiture";
     vector<Car*> cars = simulation->getCars();
     for(unsigned long int i=0; i<cars.size(); ++i)
     {
