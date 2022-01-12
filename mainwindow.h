@@ -27,8 +27,6 @@ class MainWindow : public QMainWindow
 
         void ZoomIn();
 
-        void on_LaunchClicked();
-
         void update();
 
         void startAndStop();
@@ -38,6 +36,7 @@ class MainWindow : public QMainWindow
         int calculInterval(int speed);
 
         double getSpeedRatio(int speed);
+
 
 private:
         Ui::MainWindow *ui;
