@@ -27,6 +27,7 @@
      <font>
       <family>Calibri</family>
       <pointsize>20</pointsize>
+      <weight>50</weight>
       <bold>false</bold>
       <underline>true</underline>
      </font>
@@ -52,6 +53,15 @@
       <pointsize>10</pointsize>
      </font>
     </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
+    <property name="singleStep">
+     <number>1</number>
+    </property>
+    <property name="value">
+     <number>20</number>
+    </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
     </property>
@@ -69,6 +79,7 @@
      <font>
       <family>Calibri</family>
       <pointsize>20</pointsize>
+      <weight>75</weight>
       <italic>false</italic>
       <bold>true</bold>
       <underline>true</underline>
@@ -94,6 +105,7 @@
      <font>
       <family>Calibri</family>
       <pointsize>20</pointsize>
+      <weight>50</weight>
       <bold>false</bold>
       <underline>true</underline>
      </font>
@@ -118,6 +130,7 @@
      <font>
       <family>Calibri</family>
       <pointsize>20</pointsize>
+      <weight>50</weight>
       <bold>false</bold>
       <underline>true</underline>
      </font>
@@ -341,6 +354,7 @@
      <font>
       <family>Calibri</family>
       <pointsize>15</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -395,6 +409,7 @@ QPushButton:default {
      <font>
       <family>Calibri</family>
       <pointsize>24</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -438,6 +453,7 @@ QPushButton:default {
     <property name="font">
      <font>
       <pointsize>14</pointsize>
+      <weight>50</weight>
       <bold>false</bold>
      </font>
     </property>
@@ -482,6 +498,7 @@ QPushButton:default {
      <font>
       <family>Calibri</family>
       <pointsize>15</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -526,6 +543,7 @@ QPushButton:default {
      <font>
       <family>Calibri</family>
       <pointsize>24</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -564,7 +582,7 @@ QPushButton:default {
      <x>0</x>
      <y>0</y>
      <width>1264</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>

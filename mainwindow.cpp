@@ -7,6 +7,9 @@
 #include <unistd.h>
 #include <stdio.h>
 
+const int baseTimeur = 500;
+const double baseSpeed = 20;
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     simulation = new Simulation();
@@ -28,7 +31,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::update()
 {
-    if(launched) simulation->update();
+    if(launched)
+    {
+        simulation->update();
+    }
     ui->openGlWid->update();
 }
 
@@ -44,25 +50,25 @@ void MainWindow::on_removeCarClicked()
     ui->openGlWid->update();
 }
 
-void MainWindow::on_zoomOutClicked()
+void MainWindow::ZoomOut()
 {
     ui->openGlWid->decreaseZoom();
     ui->openGlWid->update();
 }
 
-void MainWindow::on_zoomInClicked()
+void MainWindow::ZoomIn()
 {
     ui->openGlWid->increaseZoom();
     ui->openGlWid->update();
 }
 
-void MainWindow::on_LaunchClicked()
+void MainWindow::startAndStop()
 {
     if(!launched)
     {
         launched = true;
         QPushButton* buttonSender = qobject_cast<QPushButton*>(sender());
-        buttonSender->setText("Arreter");
+        buttonSender->setText("Arrêter");
     }
     else
     {
@@ -70,4 +76,20 @@ void MainWindow::on_LaunchClicked()
         QPushButton* buttonSender = qobject_cast<QPushButton*>(sender());
         buttonSender->setText("Lancer");
     }
+}
+
+double MainWindow::getSpeedRatio(int newSpeed)
+{
+    return baseSpeed/newSpeed;
+}
+
+int MainWindow::calculInterval(int newSpeed)
+{
+    //500 * ratio => 20 => 500
+    return 500 * (baseSpeed/newSpeed);
+}
+
+void MainWindow::changeSpeed(int newSpeed)
+{
+    updater->setInterval(calculInterval(newSpeed));
 }

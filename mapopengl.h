@@ -13,6 +13,7 @@ class MapOpenGL : public QOpenGLWidget
         virtual void paintGL();
 
         void setSimulation(Simulation* simul);
+        void setSpeedSimulation(int speed);
         void increaseZoom();
         void decreaseZoom();
 

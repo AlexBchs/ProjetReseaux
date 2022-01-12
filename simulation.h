@@ -20,6 +20,7 @@ class Simulation
         vector<Car*>& getCars();
         vector<Node*>& getNodes();
         vector<Route*>& getRoutes();
+        int getSpeedSimulation();
 
         Node* randomNode();
 
@@ -36,7 +37,7 @@ class Simulation
         double _hexaRadius;
         int _colSizeGrid;
         int _lineSizeGrid;
-        double speedSimulation;
+        int speedSimulation;
         Graph* _graph;
 };
 

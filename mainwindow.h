@@ -33,12 +33,20 @@ class MainWindow : public QMainWindow
 
         void startAndStop();
 
+        void changeSpeed(int position);
+
+        int calculInterval(int speed);
+
+        double getSpeedRatio(int speed);
+
 private:
         Ui::MainWindow *ui;
 
         Simulation* simulation;
 
         QTimer* updater;
+
+        int currentTick = 0;
 
         bool launched;
 };

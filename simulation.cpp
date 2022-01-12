@@ -5,7 +5,7 @@
 #include <QDir>
 #include <cstdlib>
 
-Simulation::Simulation() : _cars{0}, _nodes{0}, _routes{0}, speedSimulation{0.1}
+Simulation::Simulation() : _cars{0}, _nodes{0}, _routes{0}, speedSimulation{20}
 {
     srand(time(NULL));
 
@@ -39,6 +39,11 @@ Simulation::~Simulation()
 int Simulation::getNumberOfCars() const
 {
     return _cars.size();
+}
+
+int Simulation::getSpeedSimulation()
+{
+    return speedSimulation;
 }
 
 HexaGrid Simulation::getGrid()
