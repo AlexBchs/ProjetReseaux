@@ -1,20 +1,27 @@
+#ifndef POINT_H
+#define POINT_H
+
 class Point
 {
+    public :
+        Point();
+        Point(double x, double y);
+        Point(int x, int y);
 
-private:
+        virtual ~Point();
 
-	int x;
-	int y;
+        double getX() const;
+        double getY() const;
 
-public:
+        void setX(double x);
+        void setY(double y);
 
-	Point(int x, int y);
-	Point();
-	int X() const;
-	int Y() const;
-	void setX(int x);
-	void setY(int y);
-	double Distance(Point& p);
+        void moveTo(double x, double y);
+        void moveOf(double dx, double dy);
 
+    private :
+        double _x;
+        double _y;
 };
 
+#endif // POINT_H

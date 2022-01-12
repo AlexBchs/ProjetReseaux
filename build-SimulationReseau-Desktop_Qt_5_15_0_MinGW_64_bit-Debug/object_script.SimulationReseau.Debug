@@ -1,0 +1,14 @@
+debug/car.o
+debug/graph.o
+debug/hexaGrid.o
+debug/hexaLine.o
+debug/hexagon.o
+debug/main.o
+debug/mainwindow.o
+debug/mapopengl.o
+debug/node.o
+debug/point.o
+debug/route.o
+debug/signal.o
+debug/simulation.o
+debug/moc_mainwindow.o
