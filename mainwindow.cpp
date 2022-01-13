@@ -86,7 +86,7 @@ double MainWindow::getSpeedRatio(int newSpeed)
 int MainWindow::calculInterval(int newSpeed)
 {
     //500 * ratio => 20 => 500
-    return baseInterval * (baseSpeed/newSpeed);
+    return baseInterval * getSpeedRatio(newSpeed);
 }
 
 void MainWindow::changeSpeed(int newSpeed)
