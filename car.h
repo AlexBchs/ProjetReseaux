@@ -23,6 +23,7 @@ class Car
         double getSpeed() const;
         vector<Car*>& getConnectedCars();
         bool endOfRoute() const;
+        bool exist() const;
 
         void setPosition(int x, int y);
         void setEndOfRoute(bool endOfRoute);
