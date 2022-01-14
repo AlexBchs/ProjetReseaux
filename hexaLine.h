@@ -2,6 +2,7 @@
 #define HEXALINE_H
 
 #include "hexagon.h"
+#include "car.h"
 
 class HexaLine
 {
@@ -11,6 +12,8 @@ class HexaLine
         Hexagon operator[](int i) const;
 
         int getSize() const;
+        double calculDistance(Point point1, Point point2) const;
+        bool isClose(Car* car) const;
 
     private :
         std::vector<Hexagon> _line;
