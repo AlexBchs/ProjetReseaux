@@ -16,6 +16,11 @@ class MapOpenGL : public QOpenGLWidget
         void setSpeedSimulation(int speed);
         void increaseZoom();
         void decreaseZoom();
+        void paintMap();
+        void paintGrille();
+        void paintNodes();
+        void paintRoutes();
+        void paintVoitures();
 
     private :
         QImage* bg;
