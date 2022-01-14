@@ -131,6 +131,7 @@ void MapOpenGL::paintVoitures()
 {
     qDebug() << "Dessin Voitures";
     QPainter p(this);
+    p.setPen(Qt::magenta);
 
     vector<Car* > cars = simulation->getCars();
     for(unsigned long int i = 0; i< cars.size(); ++i)
@@ -139,6 +140,7 @@ void MapOpenGL::paintVoitures()
         QRectF target((point.getX()-6)*zoom,
                       (point.getY()-6)*zoom,
                       12*zoom, 12*zoom);
-        p.drawImage(target, *car);
+        //p.drawImage(target, *car);
+        p.drawEllipse(QPointF(point.getX(), point.getY()), 10, 10);
     }
 }

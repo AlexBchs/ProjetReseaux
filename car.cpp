@@ -90,14 +90,7 @@ bool Car::inRange(const Car* OtherCar)
 
     double SommeRayons = r_other + r_this;
 
-    if(distancePoints <= SommeRayons)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return distancePoints <= SommeRayons;
 }
 
 void Car::addCarCommunicating(Car* OtherCar)
@@ -129,8 +122,14 @@ void Car::moveOnTheRoute()
     if(traveledDistance() > _route->nodesDistance())
     {
         Node* endingNode;
-        if(_startingNode == _route->getNode1()) endingNode = _route->getNode2();
-        else endingNode = _route->getNode1();
+        if(_startingNode == _route->getNode1())
+        {
+            endingNode = _route->getNode2();
+        }
+        else
+        {
+            endingNode = _route->getNode1();
+        }
 
         setPosition(endingNode->getX(), endingNode->getY());
         changeRoute(endingNode, _route);
@@ -139,7 +138,7 @@ void Car::moveOnTheRoute()
 
 void Car::changeRoute(Node* endingNode, Route* finishedRoute)
 {
-    if(endingNode->getConnectedRoutes().size() > 1)
+    if(endingNode -> getConnectedRoutes().size() > 1)
     {
         int iRoute;
         do
@@ -158,5 +157,10 @@ double Car::traveledDistance() const
 {
     return sqrt((_position.getX() - _startingNode->getX()) * (_position.getX() - _startingNode->getX()) +
         (_position.getY() - _startingNode->getY()) * (_position.getY() - _startingNode->getY()));
+}
+
+bool Car::exist() const
+{
+    return this != nullptr;
 }
 

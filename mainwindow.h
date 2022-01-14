@@ -19,17 +19,7 @@ class MainWindow : public QMainWindow
         ~MainWindow();
 
     private slots:
-        void on_addCarClicked();
-
-        void on_removeCarClicked();
-
-        void ZoomOut();
-
-        void ZoomIn();
-
         void update();
-
-        void startAndStop();
 
         void changeSpeed(int position);
 
@@ -37,6 +27,13 @@ class MainWindow : public QMainWindow
 
         double getSpeedRatio(int speed);
 
+        void on_zoomIn_clicked();
+        void on_zoomOut_clicked();
+        void on_removeV_clicked();
+        void on_addV_clicked();
+
+
+        void on_pushButton_clicked();
 
 private:
         Ui::MainWindow *ui;
@@ -47,6 +44,6 @@ private:
 
         int currentTick = 0;
 
-        bool launched;
+        bool launched, paused;
 };
 #endif // MAINWINDOW_H

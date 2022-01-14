@@ -3,6 +3,7 @@
 
 #include "simulation.h"
 
+#include <QDebug>
 #include <QTimer>
 #include <unistd.h>
 #include <stdio.h>
@@ -19,7 +20,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     updater = new QTimer(this);
     updater->setInterval(baseInterval);
-    updater->start();
     connect( updater, SIGNAL(timeout()), this, SLOT(update()));
 }
 
@@ -31,50 +31,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::update()
 {
-    if(launched)
+    if(launched && updater->isActive())
     {
         simulation->update();
-    }
-    ui->openGlWid->update();
-}
-
-void MainWindow::on_addCarClicked()
-{
-    simulation->addCar();
-    ui->openGlWid->update();
-}
-
-void MainWindow::on_removeCarClicked()
-{
-    simulation->removeACar();
-    ui->openGlWid->update();
-}
-
-void MainWindow::ZoomOut()
-{
-    ui->openGlWid->decreaseZoom();
-    ui->openGlWid->update();
-}
-
-void MainWindow::ZoomIn()
-{
-    ui->openGlWid->increaseZoom();
-    ui->openGlWid->update();
-}
-
-void MainWindow::startAndStop()
-{
-    if(!launched)
-    {
-        launched = true;
-        QPushButton* buttonSender = qobject_cast<QPushButton*>(sender());
-        buttonSender->setText("Arrêter");
-    }
-    else
-    {
-        launched = false;
-        QPushButton* buttonSender = qobject_cast<QPushButton*>(sender());
-        buttonSender->setText("Lancer");
+        ui->openGlWid->update();
     }
 }
 
@@ -91,5 +51,62 @@ int MainWindow::calculInterval(int newSpeed)
 
 void MainWindow::changeSpeed(int newSpeed)
 {
-    updater->setInterval(calculInterval(newSpeed));
+    if(newSpeed == 0)
+    {
+        updater->stop();
+    }
+    else
+    {
+        updater->setInterval(calculInterval(newSpeed));
+    }
+}
+
+void MainWindow::on_zoomIn_clicked()
+{
+    qDebug() << "In";
+    ui->openGlWid->increaseZoom();
+    ui->openGlWid->update();
+}
+
+
+void MainWindow::on_zoomOut_clicked()
+{
+    qDebug() << "Out";
+    ui->openGlWid->decreaseZoom();
+    ui->openGlWid->update();
+}
+
+
+void MainWindow::on_removeV_clicked()
+{
+    qDebug() << "RemoveV";
+    simulation->removeACar();
+    ui->openGlWid->update();
+}
+
+
+void MainWindow::on_addV_clicked()
+{
+    qDebug() << "AddV";
+    simulation->addCar();
+    ui->openGlWid->update();
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    qDebug() << "Gestion Simulation";
+    if(!launched)
+    {
+        launched = true;
+        updater->start();
+        QPushButton* buttonSender = qobject_cast<QPushButton*>(sender());
+        buttonSender->setText("Arrêter la simulation");
+    }
+    else
+    {
+        updater->stop();
+        launched = false;
+        QPushButton* buttonSender = qobject_cast<QPushButton*>(sender());
+        buttonSender->setText("Lancer la simulation");
+    }
 }

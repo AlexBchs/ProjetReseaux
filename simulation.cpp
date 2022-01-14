@@ -92,44 +92,38 @@ void Simulation::removeACar()
 void Simulation::update()
 {
     qDebug() << "Tick Update";
-    /*for(unsigned long int i=0; i<_cars.size(); ++i)
+    for(unsigned long int i=0; i<_cars.size(); ++i)
     {
-        if(_cars[i]) _cars[i]->moveOnTheRoute();
+        if(_cars[i]->exist())
+        {
+            _cars[i]->moveOnTheRoute();
+        }
     }
 
-    double R;
-    double G;
-    double B;
+    double r, g, b;
 
-    int nCarsInOneHexagon;
+    bool atLeastOneCar;
 
-    for(int i=0; i< _grid.getColSize(); ++i)
+    /*for(int i = 0; i< _grid -> getColSize(); ++i)
     {
-        for(int j=0; j<_lineSizeGrid; ++j)
+        for(int j = 0; j < _lineSizeGrid; ++j)
         {
-            _grid[i][j].setColor({ 1.0,1.0,1.0,1.0 });
-            _grid[i][j].settransparance(0.0);
-            nCarsInOneHexagon = 0;
-            R = 0;G = 0;B = 0;
+            atLeastOneCar = true;
+            r = g = b = 0;
 
-            for(unsigned long int i=0; i<_cars.size(); ++i)
+            for(unsigned long int i=0; i < _cars.size(); ++i)
             {
-                if(_cars[i])
+                if(_cars[i]->exist())
                 {
-                    if(_grid[i][j].contains(_cars[i]->getPosition()))
+                    Car* car = _cars[i];
+                    if(_grid[i][j].isClose(car))
                     {
-                        nCarsInOneHexagon++;
-                        R += (double)(_cars[i]->getSignal()->getFrequency());
-                        G += (double)(_cars[i]->getSignal()->getRayon());
-                        B += (double)(_cars[i]->getSignal()->getStrength());
+                        atLeastOneCar = true;
+                        r += (car->getSignal()->getFrequency());
+                        g += (car->getSignal()->getRayon());
+                        b += (car->getSignal()->getStrength());
                     }
                 }
-            }
-
-            if(nCarsInOneHexagon > 0)
-            {
-                //calcul rgb et transparance
-                R = (R / 255.0) ;
             }
         }
     }*/
