@@ -35,6 +35,8 @@ class MainWindow : public QMainWindow
 
         void on_pushButton_clicked();
 
+        bool isActive();
+
 private:
         Ui::MainWindow *ui;
 
@@ -43,7 +45,5 @@ private:
         QTimer* updater;
 
         int currentTick = 0;
-
-        bool launched, paused;
 };
 #endif // MAINWINDOW_H

@@ -16,7 +16,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     simulation = new Simulation();
     ui->setupUi(this);
     ui->openGlWid->setSimulation(simulation);
-    launched = false;
 
     updater = new QTimer(this);
     updater->setInterval(baseInterval);
@@ -31,7 +30,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::update()
 {
-    if(launched && updater->isActive())
+    if(isActive())
     {
         simulation->update();
         ui->openGlWid->update();
@@ -95,9 +94,8 @@ void MainWindow::on_addV_clicked()
 void MainWindow::on_pushButton_clicked()
 {
     qDebug() << "Gestion Simulation";
-    if(!launched)
+    if(!isActive())
     {
-        launched = true;
         updater->start();
         QPushButton* buttonSender = qobject_cast<QPushButton*>(sender());
         buttonSender->setText("Arrêter la simulation");
@@ -105,8 +103,12 @@ void MainWindow::on_pushButton_clicked()
     else
     {
         updater->stop();
-        launched = false;
         QPushButton* buttonSender = qobject_cast<QPushButton*>(sender());
         buttonSender->setText("Lancer la simulation");
     }
+}
+
+bool MainWindow::isActive()
+{
+    return updater->isActive();
 }
