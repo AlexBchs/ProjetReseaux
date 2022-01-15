@@ -21,8 +21,7 @@ class MainWindow : public QMainWindow
     private slots:
         void update();
 
-        void changeSpeed(int position);
-
+        double calculPourcentSpeed(int speed);
         int calculInterval(int speed);
 
         double getSpeedRatio(int speed);
@@ -37,6 +36,8 @@ class MainWindow : public QMainWindow
 
         bool isActive();
 
+        void on_timeSlider_valueChanged(int newSpeed);
+
 private:
         Ui::MainWindow *ui;
 
@@ -45,5 +46,7 @@ private:
         QTimer* updater;
 
         int currentTick = 0;
+
+        bool launched = false;
 };
 #endif // MAINWINDOW_H
