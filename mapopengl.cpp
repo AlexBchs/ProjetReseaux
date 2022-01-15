@@ -61,8 +61,8 @@ void MapOpenGL::paintGL()
     qDebug() << "Debut paint";
     paintMap();
     paintGrille();
-    paintNodes();
-    paintRoutes();
+    //paintNodes();
+    //paintRoutes();
     paintVoitures();
 
     qDebug() << "Dessin Termine";
