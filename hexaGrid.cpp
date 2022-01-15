@@ -42,11 +42,11 @@ std::vector<Hexagon> HexaGrid::getHexagons()
 {
     std::vector<Hexagon> hexagons;
     hexagons.reserve(_colSize * _lineSize);
-    for(int i = 0; i<_colSize; ++i)
+    for(int colonne = 0; colonne < _colSize; ++colonne)
     {
-        for(int j = 0; j< _lineSize; ++j)
+        for(int ligne = 0; ligne < _lineSize; ++ligne)
         {
-            hexagons.push_back(_column[i][j]);
+            hexagons.push_back(_column[colonne][ligne]);
         }
     }
     return hexagons;

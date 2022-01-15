@@ -1,6 +1,7 @@
 #include "hexaLine.h"
 #include "car.h"
 #include "math.h"
+#include <QDebug>
 
 const int maxDistance = 3;
 
@@ -42,6 +43,7 @@ bool HexaLine::isClose(Car* car) const
     {
         for(int j = 0; j < 6; ++j)
         {
+            qDebug() << "j: " << j;
             if(calculDistance(car -> getPosition(), _line[i][j]) < maxDistance)
             {
                 return true;
