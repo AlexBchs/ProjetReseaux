@@ -22,7 +22,7 @@ HexaLine::HexaLine(const Point& center, double radius, int size) : _size{size}
     }
 }
 
-Hexagon HexaLine::operator[](int i) const
+Hexagon HexaLine::getHexagon(int i) const
 {
     return _line[i];
 }
@@ -43,7 +43,6 @@ bool HexaLine::isClose(Car* car) const
     {
         for(int j = 0; j < 6; ++j)
         {
-            qDebug() << "j: " << j;
             if(calculDistance(car -> getPosition(), _line[i].getPoint(j)) < maxDistance)
             {
                 return true;

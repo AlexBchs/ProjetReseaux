@@ -6,21 +6,22 @@
 #include <cstdlib>
 #include <QDebug>
 
+const int tailleMaxTableaux = 100;
+const int radiusHexa = 50, tailleColonne = 400, tailleLigne = 400;
+const Point Origine = Point(5.0, 5.0);
+
 Simulation::Simulation() : _nodes{0}, _routes{0}, speedSimulation{20}
 {
     srand(time(NULL));
 
-    _cars.reserve(100);
-    _nodes.reserve(100);
-    _routes.reserve(100);
-    Point Origine = Point(5.0, 5.0);
-    _hexaRadius = 50;
-    _colSizeGrid = 400;
-    _lineSizeGrid = 400;
+    _cars.reserve(tailleMaxTableaux);
+    _nodes.reserve(tailleMaxTableaux);
+    _routes.reserve(tailleMaxTableaux);
+    _hexaRadius = radiusHexa;
+    _colSizeGrid = tailleColonne;
+    _lineSizeGrid = tailleLigne;
 
     _grid = new HexaGrid(Origine, _hexaRadius, _lineSizeGrid, _colSizeGrid);
-
-
     _graph = new Graph("../SimulationReseau/Ressources/map.txt", *this);
 
     addCar();

@@ -9,7 +9,7 @@ class HexaLine
     public :
         HexaLine(const Point& First, double radius, int size);
 
-        Hexagon operator[](int i) const;
+        Hexagon getHexagon(int i) const;
 
         int getSize() const;
         double calculDistance(Point point1, Point point2) const;
