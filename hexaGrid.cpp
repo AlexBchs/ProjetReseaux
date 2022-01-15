@@ -32,9 +32,9 @@ int HexaGrid::getColSize() const
     return _colSize;
 }
 
-HexaLine HexaGrid::operator[](int i) const
+HexaLine HexaGrid::getHexaLine(int hexaline) const
 {
-    return _column[i];
+    return _column[hexaline];
 }
 
 

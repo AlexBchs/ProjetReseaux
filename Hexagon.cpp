@@ -56,9 +56,9 @@ Point Hexagon::getTopLeft() const
     return _listPoint[5];
 }
 
-Point  Hexagon::operator[](int i) const
+Point  Hexagon::getPoint(int nbPoint) const
 {
-    return _listPoint[i];
+    return _listPoint[nbPoint];
 }
 
 std::vector<double> Hexagon::getColor() const

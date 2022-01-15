@@ -28,11 +28,20 @@ Simulation::Simulation() : _nodes{0}, _routes{0}, speedSimulation{20}
 
 Simulation::~Simulation()
 {
-    for(unsigned long int i=0; i<_nodes.size(); ++i) delete _nodes[i];
+    for(unsigned long int i=0; i<_nodes.size(); ++i)
+    {
+        delete _nodes[i];
+    }
 
-    for(unsigned long int i=0; i<_routes.size(); ++i) delete _routes[i];
+    for(unsigned long int i=0; i<_routes.size(); ++i)
+    {
+        delete _routes[i];
+    }
 
-    for(unsigned long int i=0; i<_cars.size(); ++i) delete _cars[i];
+    for(unsigned long int i=0; i<_cars.size(); ++i)
+    {
+        delete _cars[i];
+    }
 
     delete _graph;
 }

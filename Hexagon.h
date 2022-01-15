@@ -19,7 +19,7 @@ class Hexagon
         Point getBottomLeft() const;
         Point getTopLeft() const;
 
-        Point operator[](int i)const;
+        Point getPoint(int nbPoint)const;
 
         std::vector<double> getColor()const;
         void setColor(std::vector<double> color);

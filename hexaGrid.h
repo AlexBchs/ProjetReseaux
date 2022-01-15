@@ -14,7 +14,7 @@ class HexaGrid
         std::vector<Hexagon> getHexagons();
         void getHexagons(std::vector<Hexagon>& Hexagons);
 
-        HexaLine operator[](int i) const;
+        HexaLine getHexaLine(int hexaline) const;
 
     private :
         int _colSize;

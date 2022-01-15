@@ -90,10 +90,10 @@ void MapOpenGL::paintGrille()
     {
         for(int j = 0; j < 5; ++j)
         {
-            p.drawLine(QLineF( hexagons[i][j].getX() * zoom,
-                               hexagons[i][j].getY() * zoom,
-                               hexagons[i][j+1].getX()*zoom,
-                               hexagons[i][j+1].getY()*zoom));
+            p.drawLine(QLineF( hexagons[i].getPoint(j).getX() * zoom,
+                               hexagons[i].getPoint(j).getY() * zoom,
+                               hexagons[i].getPoint(j+1).getX()*zoom,
+                               hexagons[i].getPoint(j+1).getY()*zoom));
         }
     }
 }
