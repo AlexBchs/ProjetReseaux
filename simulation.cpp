@@ -92,10 +92,14 @@ void Simulation::addCar()
 
 void Simulation::removeACar()
 {
-    if(_cars.size()>0)
+    if(_cars.size() > 0)
     {
         delete _cars[_cars.size()-1];
         _cars.pop_back();
+    }
+    else
+    {
+        qDebug() << "[ERROR] Impossible de retirer une voiture. (Aucune voiture présente)";
     }
 }
 
