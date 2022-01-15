@@ -8,10 +8,10 @@
 #include <iostream>
 #include <QDebug>
 
-const double maxZoom = 2, minZoom = 0.25, stepZoom = 0.25;
+const double maxZoom = 3, minZoom = 1.25, stepZoom = 0.25;
 const double baseSizeX = 399, baseSizeZ = 200;
 
-MapOpenGL::MapOpenGL(QWidget* parent) : QOpenGLWidget (parent), zoom{1}
+MapOpenGL::MapOpenGL(QWidget* parent) : QOpenGLWidget (parent), zoom{2}
 {}
 
 void MapOpenGL::initializeGL()
@@ -43,17 +43,22 @@ void MapOpenGL::setSimulation(Simulation* simul)
 
 void MapOpenGL::increaseZoom()
 {
-    if(maxZoom < zoom)
+    if(maxZoom > zoom)
     {
         zoom += stepZoom;
+        paintGL();
     }
+    qDebug() << "Nouveau Zoom:" << zoom;
 }
 void MapOpenGL::decreaseZoom()
 {
-    if(minZoom > zoom)
+    if(minZoom < zoom)
     {
         zoom -= stepZoom;
+        paintGL();
     }
+    qDebug() << "Nouveau Zoom:" << zoom;
+
 }
 
 void MapOpenGL::paintGL()

@@ -16,9 +16,10 @@ HexaLine::HexaLine(const Point& center, double radius, int size) : _size{size}
     double diff = _line[0].getPoint(1).getX() - xCenter;
     xCenter += 2 * diff;
 
-    for(int i = 1; i <size; ++i, xCenter+=(2*diff))
+    for(int i = 1; i < size; ++i)
     {
         _line.push_back(Hexagon(Point(xCenter, yCenter), radius));
+        xCenter = xCenter + (2*diff);
     }
 }
 
