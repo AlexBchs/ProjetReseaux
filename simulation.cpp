@@ -6,21 +6,22 @@
 #include <cstdlib>
 #include <QDebug>
 
-Simulation::Simulation() : _cars{0}, _nodes{0}, _routes{0}, speedSimulation{20}
+const int tailleMaxTableaux = 100;
+const int radiusHexa = 50, tailleColonne = 400, tailleLigne = 400;
+const Point Origine = Point(5.0, 5.0);
+
+Simulation::Simulation() : _nodes{0}, _routes{0}, speedSimulation{20}
 {
     srand(time(NULL));
 
-    _cars.reserve(100);
-    _nodes.reserve(100);
-    _routes.reserve(100);
-    Point Origine = Point(5.0, 5.0);
-    _hexaRadius = 50;
-    _colSizeGrid = 400;
-    _lineSizeGrid = 400;
+    _cars.reserve(tailleMaxTableaux);
+    _nodes.reserve(tailleMaxTableaux);
+    _routes.reserve(tailleMaxTableaux);
+    _hexaRadius = radiusHexa;
+    _colSizeGrid = tailleColonne;
+    _lineSizeGrid = tailleLigne;
 
     _grid = new HexaGrid(Origine, _hexaRadius, _lineSizeGrid, _colSizeGrid);
-
-
     _graph = new Graph("../SimulationReseau/Ressources/map.txt", *this);
 
     addCar();
@@ -28,11 +29,20 @@ Simulation::Simulation() : _cars{0}, _nodes{0}, _routes{0}, speedSimulation{20}
 
 Simulation::~Simulation()
 {
-    for(unsigned long int i=0; i<_nodes.size(); ++i) delete _nodes[i];
+    for(unsigned long int i=0; i<_nodes.size(); ++i)
+    {
+        delete _nodes[i];
+    }
 
-    for(unsigned long int i=0; i<_routes.size(); ++i) delete _routes[i];
+    for(unsigned long int i=0; i<_routes.size(); ++i)
+    {
+        delete _routes[i];
+    }
 
-    for(unsigned long int i=0; i<_cars.size(); ++i) delete _cars[i];
+    for(unsigned long int i=0; i<_cars.size(); ++i)
+    {
+        delete _cars[i];
+    }
 
     delete _graph;
 }
@@ -77,15 +87,19 @@ Node* Simulation::randomNode()
 void Simulation::addCar()
 {
     Node* node = randomNode();
-    _cars[_cars.size()-1] = new Car(node, new Signal(), node->getConnectedRoutes()[0], speedSimulation);
+    _cars.push_back(new Car(node, new Signal(), node->getConnectedRoutes()[0], speedSimulation));
 }
 
 void Simulation::removeACar()
 {
-    if(_cars.size()>0)
+    if(_cars.size() > 0)
     {
         delete _cars[_cars.size()-1];
         _cars.pop_back();
+    }
+    else
+    {
+        qDebug() << "[ERROR] Impossible de retirer une voiture. (Aucune voiture présente)";
     }
 }
 

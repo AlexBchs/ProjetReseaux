@@ -26,7 +26,7 @@ class MapOpenGL : public QOpenGLWidget
         QImage* bg;
         QImage* car;
         Simulation* simulation;
-        int zoom;
+        double zoom;
 };
 
 #endif // MAPOPENGL_H

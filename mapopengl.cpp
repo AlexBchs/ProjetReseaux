@@ -8,10 +8,10 @@
 #include <iostream>
 #include <QDebug>
 
-const double maxZoom = 2, minZoom = 0.25, stepZoom = 0.25;
+const double maxZoom = 3, minZoom = 1.25, stepZoom = 0.25;
 const double baseSizeX = 399, baseSizeZ = 200;
 
-MapOpenGL::MapOpenGL(QWidget* parent) : QOpenGLWidget (parent), zoom{1}
+MapOpenGL::MapOpenGL(QWidget* parent) : QOpenGLWidget (parent), zoom{2}
 {}
 
 void MapOpenGL::initializeGL()
@@ -43,17 +43,22 @@ void MapOpenGL::setSimulation(Simulation* simul)
 
 void MapOpenGL::increaseZoom()
 {
-    if(maxZoom < zoom)
+    if(maxZoom > zoom)
     {
         zoom += stepZoom;
+        paintGL();
     }
+    qDebug() << "Nouveau Zoom:" << zoom;
 }
 void MapOpenGL::decreaseZoom()
 {
-    if(minZoom > zoom)
+    if(minZoom < zoom)
     {
         zoom -= stepZoom;
+        paintGL();
     }
+    qDebug() << "Nouveau Zoom:" << zoom;
+
 }
 
 void MapOpenGL::paintGL()
@@ -61,8 +66,8 @@ void MapOpenGL::paintGL()
     qDebug() << "Debut paint";
     paintMap();
     paintGrille();
-    paintNodes();
-    paintRoutes();
+    //paintNodes();
+    //paintRoutes();
     paintVoitures();
 
     qDebug() << "Dessin Termine";
@@ -90,10 +95,10 @@ void MapOpenGL::paintGrille()
     {
         for(int j = 0; j < 5; ++j)
         {
-            p.drawLine(QLineF( hexagons[i][j].getX() * zoom,
-                               hexagons[i][j].getY() * zoom,
-                               hexagons[i][j+1].getX()*zoom,
-                               hexagons[i][j+1].getY()*zoom));
+            p.drawLine(QLineF( hexagons[i].getPoint(j).getX() * zoom,
+                               hexagons[i].getPoint(j).getY() * zoom,
+                               hexagons[i].getPoint(j+1).getX()*zoom,
+                               hexagons[i].getPoint(j+1).getY()*zoom));
         }
     }
 }

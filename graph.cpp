@@ -21,7 +21,7 @@ bool Graph::extractMap(Simulation& simulation)
     std::ifstream mapFile{_mapFileName};
     if(!mapFile.is_open())
     {
-        qDebug() << "Error map file not found";
+        qDebug() << "Map introuvable";
         return false;
     }
 

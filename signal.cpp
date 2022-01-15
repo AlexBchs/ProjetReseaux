@@ -10,17 +10,17 @@ Signal::Signal(double rayon, double strength, double frequency) : _rayon{rayon},
 
 void Signal::setRayon(double rayon)
 {
-    _rayon=rayon;
+    _rayon = rayon;
 }
 
 void Signal::setStrength(double strength)
 {
-    _strength=strength;
+    _strength = strength;
 }
 
 void Signal::setFrequency(double frequency)
 {
-    _frequency=frequency;
+    _frequency = frequency;
 }
 
 double Signal::getRayon()
@@ -38,7 +38,7 @@ double Signal::getFrequency()
     return _frequency;
 }
 
-double Signal::getDensityOfStrength(double distanceFromTransmettor)
+double Signal::getStrengthOfDensity(double distanceFromTransmettor)
 {
     return (_strength*_antennaGain)/(4 * PI * (distanceFromTransmettor*distanceFromTransmettor));
 }
@@ -48,7 +48,7 @@ double Signal::getAvailableStrength(double distanceFromTransmettor)
     return ((_strength*_antennaGain)/(4 * PI * (distanceFromTransmettor*distanceFromTransmettor))) * _antennaEffectiveArea;
 }
 
-double Signal::getSignalAttenuation(double emettorStrength, double receivedStrength)
+double Signal::getAttenuationOfSignal(double emettorStrength, double receivedStrength)
 {
     return emettorStrength/receivedStrength;
 }

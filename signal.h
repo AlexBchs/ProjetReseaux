@@ -11,14 +11,14 @@ class Signal
         void setStrength(double strength);
         void setFrequency(double frequency);
 
-        double getRayon();
         double getStrength();
+        double getRayon();
         double getFrequency();
 
-        double getDensityOfStrength(double distanceFromTransmettor);
+        double getStrengthOfDensity(double distanceFromTransmettor);
         double getAvailableStrength(double distanceFromTransmettor);
 
-        double getSignalAttenuation(double emettorStrength, double receivedStrength);
+        double getAttenuationOfSignal(double emettorStrength, double receivedStrength);
 
     private :
         double _rayon;

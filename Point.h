@@ -10,11 +10,11 @@ class Point
 
         virtual ~Point();
 
-        double getX() const;
-        double getY() const;
-
         void setX(double x);
         void setY(double y);
+
+        double getX() const;
+        double getY() const;
 
         void moveTo(double x, double y);
         void moveOf(double dx, double dy);
