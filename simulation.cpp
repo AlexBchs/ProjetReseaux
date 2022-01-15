@@ -94,10 +94,7 @@ void Simulation::update()
     qDebug() << "Tick Update";
     for(unsigned long int i=0; i<_cars.size(); ++i)
     {
-        if(_cars[i]->exist())
-        {
-            _cars[i]->moveOnTheRoute();
-        }
+        _cars[i]->moveOnTheRoute();
     }
 
     double r, g, b;

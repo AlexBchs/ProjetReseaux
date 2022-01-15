@@ -158,9 +158,3 @@ double Car::traveledDistance() const
     return sqrt((_position.getX() - _startingNode->getX()) * (_position.getX() - _startingNode->getX()) +
         (_position.getY() - _startingNode->getY()) * (_position.getY() - _startingNode->getY()));
 }
-
-bool Car::exist() const
-{
-    return this != nullptr;
-}
-
