@@ -6,7 +6,7 @@
 #include <cstdlib>
 #include <QDebug>
 
-Simulation::Simulation() : _cars{0}, _nodes{0}, _routes{0}, speedSimulation{20}
+Simulation::Simulation() : _nodes{0}, _routes{0}, speedSimulation{20}
 {
     srand(time(NULL));
 
@@ -77,7 +77,7 @@ Node* Simulation::randomNode()
 void Simulation::addCar()
 {
     Node* node = randomNode();
-    _cars[_cars.size()-1] = new Car(node, new Signal(), node->getConnectedRoutes()[0], speedSimulation);
+    _cars.push_back(new Car(node, new Signal(), node->getConnectedRoutes()[0], speedSimulation));
 }
 
 void Simulation::removeACar()
