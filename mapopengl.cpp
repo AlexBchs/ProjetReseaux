@@ -26,7 +26,7 @@ void MapOpenGL::initializeGL()
         qDebug() << "Map de Mulhouse introuvable";
     }
     car = new QImage();
-    if(bg->load(QString("../SimulationReseau/Ressources/voiture.png")))
+    if(car->load(QString("../SimulationReseau/Ressources/voiture.png")))
     {
         qDebug() << "Image de voiture chargé";
     }
@@ -74,7 +74,7 @@ void MapOpenGL::paintMap()
     QPainter p(this);
 
     QRectF target( 0, 0, baseSizeX * zoom, baseSizeZ * zoom);
-    p.drawImage( target, *car);
+    p.drawImage( target, *bg);
 
 }
 
@@ -140,7 +140,6 @@ void MapOpenGL::paintVoitures()
         QRectF target((point.getX()-6)*zoom,
                       (point.getY()-6)*zoom,
                       12*zoom, 12*zoom);
-        //p.drawImage(target, *car);
-        p.drawEllipse(QPointF(point.getX(), point.getY()), 10, 10);
+        p.drawImage(target, *car);
     }
 }
