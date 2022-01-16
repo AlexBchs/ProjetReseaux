@@ -21,6 +21,7 @@ class MapOpenGL : public QOpenGLWidget
         void paintNodes();
         void paintRoutes();
         void paintVoitures();
+        void setHexagonColor(QColor qColor, int idHexagon);
 
     private :
         QImage* bg;
