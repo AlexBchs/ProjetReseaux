@@ -92,10 +92,16 @@ void MapOpenGL::paintGrille()
     std::vector<Hexagon> hexagons = simulation->getGrid().getHexagons();
     for(unsigned long int i = 0; i < hexagons.size(); ++i)
     {
+        p.setPen(QColor::fromRgb(255, 255, 0));
         Hexagon hexagon = hexagons[i];
-        p.setPen(QColor::fromRgb(hexagons[i].getColor()[0],
-                 hexagons[i].getColor()[1],
-                hexagons[i].getColor()[2]));
+        for(unsigned long int idCar = 0; idCar  < simulation->getCars().size(); ++idCar )
+        {
+            Car* car = simulation->getCars()[idCar ];
+            if(hexagon.contains(car->getPosition()))
+            {
+                p.setPen(QColor::fromRgb(0, 0, 255));
+            }
+        }
         //qDebug() << "Couleur pour la grille: " << hexagons[i].getColor()[0] << " " << " " << hexagons[i].getColor()[1] << " " << hexagons[i].getColor()[2];
         for(int j = 0; j < 5; ++j)
         {
