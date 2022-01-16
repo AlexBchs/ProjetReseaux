@@ -7,7 +7,7 @@
 #include <QDebug>
 
 const int tailleMaxTableaux = 100;
-const int radiusHexa = 50, tailleColonne = 10, tailleLigne = 10;
+const int radiusHexa = 20, tailleColonne = 12, tailleLigne = 12;
 const Point Origine = Point(5.0, 5.0);
 
 Simulation::Simulation() : _nodes{0}, _routes{0}, speedSimulation{20}
