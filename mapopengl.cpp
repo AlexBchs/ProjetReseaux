@@ -88,18 +88,36 @@ void MapOpenGL::paintGrille()
 {
     qDebug() << "Dessin Grille";
     QPainter p(this);
-    p.setPen(Qt::yellow);
 
     std::vector<Hexagon> hexagons = simulation->getGrid().getHexagons();
     for(unsigned long int i = 0; i < hexagons.size(); ++i)
     {
+        Hexagon hexagon = hexagons[i];
+        p.setPen(QColor::fromRgb(hexagons[i].getColor()[0],
+                 hexagons[i].getColor()[1],
+                hexagons[i].getColor()[2]));
+        //qDebug() << "Couleur pour la grille: " << hexagons[i].getColor()[0] << " " << " " << hexagons[i].getColor()[1] << " " << hexagons[i].getColor()[2];
         for(int j = 0; j < 5; ++j)
         {
-            p.drawLine(QLineF( hexagons[i].getPoint(j).getX() * zoom,
-                               hexagons[i].getPoint(j).getY() * zoom,
-                               hexagons[i].getPoint(j+1).getX()*zoom,
-                               hexagons[i].getPoint(j+1).getY()*zoom));
+            p.drawLine(QLineF( hexagon.getPoint(j).getX() * zoom,
+                               hexagon.getPoint(j).getY() * zoom,
+                               hexagon.getPoint(j+1).getX()*zoom,
+                               hexagon.getPoint(j+1).getY()*zoom));
         }
+    }
+}
+
+void MapOpenGL::setHexagonColor(QColor qcolor, int idHexagon)
+{
+    QPainter p(this);
+    p.setPen(qcolor);
+    Hexagon hexagon = simulation->getGrid().getHexagons()[idHexagon];
+    for(int j = 0; j < 5; ++j)
+    {
+        p.drawLine(QLineF( hexagon.getPoint(j).getX() * zoom,
+                           hexagon.getPoint(j).getY() * zoom,
+                           hexagon.getPoint(j+1).getX()*zoom,
+                           hexagon.getPoint(j+1).getY()*zoom));
     }
 }
 

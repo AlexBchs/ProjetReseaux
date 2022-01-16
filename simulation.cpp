@@ -7,7 +7,7 @@
 #include <QDebug>
 
 const int tailleMaxTableaux = 100;
-const int radiusHexa = 50, tailleColonne = 400, tailleLigne = 400;
+const int radiusHexa = 50, tailleColonne = 10, tailleLigne = 10;
 const Point Origine = Point(5.0, 5.0);
 
 Simulation::Simulation() : _nodes{0}, _routes{0}, speedSimulation{20}
@@ -105,37 +105,32 @@ void Simulation::removeACar()
 
 void Simulation::update()
 {
-    qDebug() << "Tick Update";
+    qDebug() << " [LOG] Update Simulation";
     for(unsigned long int i=0; i<_cars.size(); ++i)
     {
         _cars[i]->moveOnTheRoute();
     }
 
     double r, g, b;
-
-    bool atLeastOneCar;
-
-    /*for(int i = 0; i< _grid -> getColSize(); ++i)
+    for(unsigned long int j = 0; j < _grid->getHexagons().size(); ++j)
     {
-        for(int j = 0; j < _lineSizeGrid; ++j)
-        {
-            atLeastOneCar = true;
-            r = g = b = 0;
 
-            for(unsigned long int i=0; i < _cars.size(); ++i)
+        //reset or set color at 0
+        r = g = b = 0;
+
+        for(unsigned long int idCar = 0; idCar  < _cars.size(); ++idCar )
+        {
+            if(_cars[idCar ])
             {
-                if(_cars[i]->exist())
+                Car* car = _cars[idCar ];
+                if(_grid->getHexagons()[j].contains(car->getPosition()))
                 {
-                    Car* car = _cars[i];
-                    if(_grid[i][j].isClose(car))
-                    {
-                        atLeastOneCar = true;
-                        r += (car->getSignal()->getFrequency());
-                        g += (car->getSignal()->getRayon());
-                        b += (car->getSignal()->getStrength());
-                    }
+                    /*r += (car->getSignal()->getFrequency());
+                    g += (car->getSignal()->getRayon());
+                    b += (car->getSignal()->getStrength());*/
+                    _grid->getHexagons()[j].setColor({0, 0, 255});
                 }
             }
         }
-    }*/
+    }
 }

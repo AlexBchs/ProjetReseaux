@@ -2,22 +2,23 @@
 #include <algorithm>
 #include <math.h>
 
-Hexagon::Hexagon(const Point& center, double radius, std::vector<double> color, double transparance) : _radius{radius}
-{
-    _color = color;
-    _transparance = transparance;
-    double numPoints = 6.0;
-    _listPoint.reserve(static_cast<int> (numPoints));
+#include <QDebug>
 
-    double angle = 2.0* PI / numPoints;
+const double nbPointHexagone = 6.0;
+Hexagon::Hexagon(const Point& center, double radius, std::vector<double> qColor , double transparance) : _radius{radius}
+{
+    color = qColor;
+    _transparance = transparance;
+    _listPoint.reserve(nbPointHexagone);
+
+    double angle = 2.0 * PI / nbPointHexagone;
 
     double centerX = center.getX();
     double centerY = center.getY();
 
     double x, y;
 
-    //Construction des points dans le sens anti-trigo en commencant par le point en haut
-    for(int i = 0; i< numPoints; ++i)
+    for(int i = 0; i< nbPointHexagone; ++i)
     {
         x= centerX+radius*sin(i*angle);
         y= centerY+radius*cos(i*angle);
@@ -61,14 +62,14 @@ Point  Hexagon::getPoint(int nbPoint) const
     return _listPoint[nbPoint];
 }
 
-std::vector<double> Hexagon::getColor() const
+std::vector<double> Hexagon::getColor()
 {
-    return _color;
+    return color;
 }
 
-void Hexagon::setColor(std::vector<double> color)
+void Hexagon::setColor(std::vector<double> qColor)
 {
-    _color=color;
+    color = qColor;
 }
 
 double Hexagon::gettransparance() const

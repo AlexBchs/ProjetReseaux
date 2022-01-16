@@ -4,13 +4,12 @@
 #include "point.h"
 #include "math.h"
 #include <vector>
-
-
+#include <QColor>
 
 class Hexagon
 {
     public :
-        Hexagon(const Point& center, double radius, std::vector<double> color ={ 0.0,0.0,0.0 }, double transparance =0.0);
+        Hexagon(const Point& center, double radius, std::vector<double> color = { 255.0, 255.0, 0.0 }, double transparance = 0.0);
 
         Point getTop() const;
         Point getTopRight() const;
@@ -21,8 +20,8 @@ class Hexagon
 
         Point getPoint(int nbPoint)const;
 
-        std::vector<double> getColor()const;
-        void setColor(std::vector<double> color);
+        std::vector<double> getColor();
+        void setColor(std::vector<double> qColor);
 
         double gettransparance() const;
         void settransparance(double transparance);
@@ -33,7 +32,7 @@ class Hexagon
         std::vector<Point> _listPoint;
         static constexpr double const& PI = M_PI;
         double _radius;
-        std::vector<double> _color;
+        std::vector<double> color;
         double _transparance;
 };
 
